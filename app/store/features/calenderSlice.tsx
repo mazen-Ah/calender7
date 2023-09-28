@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import dayjs, { Dayjs } from "dayjs";
 import { GetMonth } from "@/app/calender/util/GetMonth";
 
@@ -6,23 +6,24 @@ export interface CounterState {
   month: Dayjs[];
   view: string;
   ViewEventModal: boolean;
+  ViewEventDetailsModal: boolean;
   CurrentYear: number;
   CurrentMonth: number;
   CurrentWeek?: any;
-  events: [
-    {
-      date: any;
-      description: any;
-      id: any;
-      time: any;
-      title: any;
-    }
-  ];
+  events: {
+    date: string;
+    description: string;
+    id: string;
+    fromTime: string;
+    title: string;
+    toTime: string;
+  }[];
 }
 
 const initialState: CounterState = {
   month: GetMonth(),
   view: "month",
+  ViewEventDetailsModal: false,
   ViewEventModal: false,
   CurrentYear: dayjs().year(),
   CurrentMonth: dayjs().month(),
@@ -31,8 +32,9 @@ const initialState: CounterState = {
       date: "2023-09-23",
       description: "Technical-Interview",
       id: "3a17ed97-73f8-4f97-841d-6f3f8b5f2db6",
-      time: "15:00",
+      fromTime: "15:00",
       title: "Technical-Interview",
+      toTime: "16:00",
     },
   ],
 };
@@ -41,8 +43,24 @@ export const calenderSlice = createSlice({
   name: "calender",
   initialState,
   reducers: {
-    addEv: (state, action) => {
+    addEv: (
+      state,
+      action: PayloadAction<{
+        date: string;
+        description: string;
+        id: string;
+        fromTime: string;
+        title: string;
+        toTime: string;
+      }>
+    ) => {
       state.events.push(action.payload);
+    },
+    delEv: (state, action: PayloadAction<string>) => {
+      // Filter out the event with the specified ID
+      state.events = state.events.filter(
+        (event) => event.id !== action.payload
+      );
     },
     PrevMonth: (state) => {
       // Decrement the current month
@@ -62,16 +80,16 @@ export const calenderSlice = createSlice({
         state.CurrentMonth += 1;
       }
     },
-    ChangeView: (state, action) => {
+    ChangeView: (state, action: PayloadAction<string>) => {
       state.view = action.payload;
     },
-    EventModal: (state, action) => {
+    EventModal: (state, action: PayloadAction<boolean>) => {
       state.ViewEventModal = action.payload;
     },
   },
 });
 
-export const { PrevMonth, NextMonth, ChangeView, EventModal, addEv } =
+export const { PrevMonth, NextMonth, ChangeView, EventModal, addEv, delEv } =
   calenderSlice.actions;
 
 export default calenderSlice.reducer;

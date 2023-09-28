@@ -2,6 +2,8 @@
 import "./globals.css";
 import { Roboto } from "next/font/google";
 import Provider from "./store/provider";
+import { MantineProvider } from "@mantine/core";
+
 const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
 export default function RootLayout({
@@ -13,7 +15,9 @@ export default function RootLayout({
     <html lang="en">
       <head></head>
       <body className={roboto.className} suppressHydrationWarning={true}>
-        <Provider>{children}</Provider>
+        <Provider>
+          <MantineProvider>{children}</MantineProvider>
+        </Provider>
       </body>
     </html>
   );

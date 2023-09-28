@@ -31,21 +31,21 @@ const DayOfTheMonth = ({ date, events }: Props) => {
         className={` ${
           ToDay === ToDayt &&
           dateMonth === dateMontht &&
-          "bg-[#4F45E4] text-white"
-        }  rounded-full  p-1 px-2 text-center my-6 `}
+          "bg-[#4F45E4] text-white font-semibold "
+        }  rounded-full  p-1 px-2 text-center my-6 text-sm`}
       >
         {date.$D}
       </span>
-      <ul className="text-black  max-md:hidden scroll-smooth space-y-[1px] grid items-center ">
+      <ul className="text-black overflow-auto max-md:hidden space-y-[1px] grid items-center h-2/3">
         {events?.map((e: any) => (
           <li
+            onClick={() => console.log(e)}
             className="text-sm px-2 rounded-lg flex group hover:text-[#4F46E5] transition-all duration-300 justify-between cursor-pointer "
             key={e.id}
           >
             <span
               style={{
                 textOverflow: "ellipsis",
-                overflow: "hidden",
                 whiteSpace: "nowrap",
                 maxWidth: "50%",
               }}
@@ -53,7 +53,7 @@ const DayOfTheMonth = ({ date, events }: Props) => {
               {e.title}
             </span>
             <span className="text-gray-400 group-hover:text-[#4F46E5] transition-all  duration-300">
-              {formatTime(e.time)}
+              {formatTime(e.fromTime)}
             </span>
           </li>
         ))}

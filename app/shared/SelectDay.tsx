@@ -2,7 +2,7 @@ import React from "react";
 import dayjs from "dayjs";
 import { PrevMonth, NextMonth } from "../store/features/calenderSlice";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
-
+import { GetMonth } from "../calender/util/GetMonth";
 const SelectDay = () => {
   const { CurrentMonth, CurrentYear } = useAppSelector(
     (state) => state.calenderSlice
@@ -27,6 +27,7 @@ const SelectDay = () => {
           />
         </svg>
       </button>
+      <div className="font-semibold cursor-pointer">Today</div>
       <button className="px-2" onClick={() => dispatch(NextMonth())}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

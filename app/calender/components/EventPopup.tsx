@@ -8,7 +8,8 @@ interface EventFormInput {
   title: string;
   date: string;
   description: string;
-  time: string;
+  fromTime: string; // Add fromTime field
+  toTime: string; // Add toTime field
 }
 
 const EventPopup = ({}) => {
@@ -30,10 +31,13 @@ const EventPopup = ({}) => {
       title: data.title,
       date: data.date,
       description: data.description,
-      time: data.time,
+      fromTime: data.fromTime, // Added "fromTime" field
+      toTime: data.toTime, // Added "toTime" field
     };
 
-    dispatch(addEv(event));
+    console.log(event);
+
+    // dispatch(addEv(event));
     // Reset the form and close the modal
     reset();
     dispatch(EventModal(false));
@@ -84,16 +88,28 @@ const EventPopup = ({}) => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="time" className="text-gray-700">
-              Time
+            <label htmlFor="fromTime" className="text-gray-700">
+              From Time
             </label>
             <input
               type="time"
-              id="time"
-              {...register("time")}
+              id="fromTime"
+              {...register("fromTime")}
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
           </div>
+          <div className="mb-4">
+            <label htmlFor="toTime" className="text-gray-700">
+              To Time
+            </label>
+            <input
+              type="time"
+              id="toTime"
+              {...register("toTime")}
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            />
+          </div>
+
           <div className="flex justify-end gap-4">
             <button
               type="submit"
@@ -119,12 +135,3 @@ const EventPopup = ({}) => {
 };
 
 export default EventPopup;
-function addEvent(event: {
-  id: string; // Unique ID
-  title: string;
-  date: string;
-  description: string;
-  time: string;
-}): any {
-  throw new Error("Function not implemented.");
-}

@@ -32,7 +32,7 @@ const MonthViews = () => {
   );
 
   const days = (): React.JSX.Element[] => {
-    return GetMonth(CurrentYear, CurrentMonth).map((el: any) => {
+    return GetMonth(CurrentYear, CurrentMonth).map((el: any, i) => {
       const arr = [];
       const { $y: year, $M: month, $D: day } = el;
       const tasks = events
@@ -47,11 +47,9 @@ const MonthViews = () => {
         .map((e: any, i) => e)
         .flat();
       arr.push(...tasks);
-      return <DayOfTheMonth date={el} events={arr} />;
+      return <DayOfTheMonth key={i} date={el} events={arr} />;
     });
   };
-
-  console.log(events);
 
   return (
     <div className="">
@@ -68,9 +66,12 @@ const MonthViews = () => {
       <main className="grid grid-cols-7">{days()}</main>
       <div className="bg-slate-100 w-full h-[35vh] p-2 text-xl grid items-start md:hidden">
         <div className="bg-white space-y-3 divide-y-[1px] rounded-xl  max-h-60 h-fit overflow-auto border-[1px]">
-          {events.map(({ title, date, time }, i) => {
+          {events.map(({ title, date, fromTime }, i) => {
             return (
-              <div className="flex justify-between items-center w-full bg-white rounded-lg p-4 shadow-md">
+              <div
+                key={i}
+                className="flex justify-between items-center w-full bg-white rounded-lg p-4 shadow-md"
+              >
                 <div className="flex-1">
                   <h2 className="text-lg font-semibold text-blue-500">
                     {title}
