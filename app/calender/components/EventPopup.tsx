@@ -35,9 +35,7 @@ const EventPopup = ({}) => {
       toTime: data.toTime, // Added "toTime" field
     };
 
-    console.log(event);
-
-    // dispatch(addEv(event));
+    dispatch(addEv(event));
     // Reset the form and close the modal
     reset();
     dispatch(EventModal(false));
