@@ -40,7 +40,7 @@ const MonthViews = () => {
           const [y, m, d] = e.date.split("-");
           return (
             parseInt(y, 10) === year &&
-            parseInt(m - 1, 10) === month &&
+            parseInt(m, 10) - 1 === month &&
             parseInt(d, 10) === day
           );
         })
@@ -50,6 +50,7 @@ const MonthViews = () => {
       return <DayOfTheMonth date={el} events={arr} />;
     });
   };
+
   console.log(events);
 
   return (

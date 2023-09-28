@@ -28,11 +28,11 @@ const initialState: CounterState = {
   CurrentMonth: dayjs().month(),
   events: [
     {
-      date: "2023-09-06",
-      description: "Description",
+      date: "2023-09-23",
+      description: "Technical-Interview",
       id: "3a17ed97-73f8-4f97-841d-6f3f8b5f2db6",
-      time: "16:18",
-      title: "task3",
+      time: "15:00",
+      title: "Technical-Interview",
     },
   ],
 };

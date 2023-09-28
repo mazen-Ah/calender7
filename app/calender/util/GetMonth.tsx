@@ -1,4 +1,9 @@
-import dayjs from "dayjs";
+import dayjs, { Dayjs, PluginFunc } from "dayjs";
+const currentDate = dayjs() as Dayjs;
+var weekYear = require("dayjs/plugin/weekYear"); // dependent on weekOfYear plugin
+var weekOfYear = require("dayjs/plugin/weekOfYear");
+dayjs.extend(weekOfYear);
+dayjs.extend(weekYear);
 export function GetMonth(year = dayjs().year(), month = dayjs().month()) {
   const firstDayOfTheMonth = dayjs(new Date(year, month, 1)).day();
   let currentMonthCount = 0 - firstDayOfTheMonth;
@@ -8,15 +13,18 @@ export function GetMonth(year = dayjs().year(), month = dayjs().month()) {
   });
   return daysMatrix;
 }
-
+declare module "dayjs" {
+  interface Dayjs {
+    week(withoutSuffix?: boolean): any & Dayjs;
+  }
+}
 export function GetWeekDatesByYearWeek(
   year = dayjs().year(),
-  weekOfYear = dayjs().week()
+  weekOfYear: Dayjs = dayjs().week()
 ) {
   const firstDayOfYear = dayjs(new Date(year, 0, 1));
-
   // Calculate the start date of the specified week
-  const startDateOfWeek = firstDayOfYear.add(weekOfYear - 1, "week");
+  const startDateOfWeek = firstDayOfYear.add(+weekOfYear - 1, "week");
 
   // Create an array to store objects for each day
   const daysInWeek = [];

@@ -39,13 +39,20 @@ const DayOfTheMonth = ({ date, events }: Props) => {
       <ul className="text-black  max-md:hidden scroll-smooth space-y-[1px] grid items-center ">
         {events?.map((e: any) => (
           <li
-            className="text-sm px-2 rounded-lg flex group hover:text-[#4F46E5] transition-all justify-between cursor-pointer "
+            className="text-sm px-2 rounded-lg flex group hover:text-[#4F46E5] transition-all duration-300 justify-between cursor-pointer "
             key={e.id}
           >
-            <span className="group-hover:text-[#4F46E5] transition-all">
+            <span
+              style={{
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                maxWidth: "50%",
+              }}
+            >
               {e.title}
             </span>
-            <span className="text-gray-400 group-hover:text-[#4F46E5] transition-all ">
+            <span className="text-gray-400 group-hover:text-[#4F46E5] transition-all  duration-300">
               {formatTime(e.time)}
             </span>
           </li>
