@@ -62,6 +62,22 @@ export const calenderSlice = createSlice({
         (event) => event.id !== action.payload
       );
     },
+    updateEvent: (state, action) => {
+      const { id, updatedEvent } = action.payload;
+
+      // Use map to create a new array with the updated event
+      state.events = state.events.map((event) => {
+        if (event.id === id) {
+          // If the event ID matches the one to update
+          return {
+            ...event, // Copy all existing properties
+            ...action.payload, // Update with new properties
+          };
+        }
+        return event; // Return unchanged events
+      });
+    },
+
     PrevMonth: (state) => {
       // Decrement the current month
       if (state.CurrentMonth === 0) {
@@ -89,7 +105,14 @@ export const calenderSlice = createSlice({
   },
 });
 
-export const { PrevMonth, NextMonth, ChangeView, EventModal, addEv, delEv } =
-  calenderSlice.actions;
+export const {
+  PrevMonth,
+  NextMonth,
+  ChangeView,
+  EventModal,
+  addEv,
+  delEv,
+  updateEvent,
+} = calenderSlice.actions;
 
 export default calenderSlice.reducer;

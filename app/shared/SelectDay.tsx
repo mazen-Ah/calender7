@@ -27,7 +27,6 @@ const SelectDay = () => {
           />
         </svg>
       </button>
-      <div className="font-semibold cursor-pointer">Today</div>
       <button className="px-2" onClick={() => dispatch(NextMonth())}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

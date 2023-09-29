@@ -1,4 +1,5 @@
 "use client";
+import "@mantine/core/styles.css";
 import "./globals.css";
 import { Roboto } from "next/font/google";
 import Provider from "./store/provider";
