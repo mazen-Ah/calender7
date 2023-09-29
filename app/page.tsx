@@ -9,7 +9,6 @@ export default function Home() {
       >
         Calender
       </Link>
-      <div className="bg-slate-500 text-cyan-500 font-bold">ssss</div>
     </main>
   );
 }
