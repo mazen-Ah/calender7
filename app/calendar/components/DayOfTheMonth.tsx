@@ -30,15 +30,17 @@ const DayOfTheMonth = ({ date, events }: Props) => {
   const [opened, { open, close }] = useDisclosure(false);
   const [e, setE] = useState();
   const ShowDay = (event: any) => {
-    router.push("day");
-    dispatch(setDay(date.$D));
+    if (!isNotInCurrentMonth) {
+      router.push("day");
+      dispatch(setDay(date.$D));
+    }
   };
   const ShowPopup = (i: any, e: any) => {
     setE(e);
     i.stopPropagation();
     open();
   };
-  
+
   return (
     <>
       {opened && <EventEditPopup isOpened={opened} isClose={close} event={e} />}

@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { useAppSelector } from "@/app/hooks/hooks";
 import dayjs from "dayjs";
-// You should remove this import as it's not used
-// import { title } from "process";
-import { current } from "@reduxjs/toolkit";
 import { useDisclosure } from "@mantine/hooks";
 import EventEditPopup from "./EventEditPopup";
 
 type Props = {};
 
 const TimeDay = (props: Props) => {
-  const { events, CurrentDay } = useAppSelector((state) => state.calenderSlice);
+  const { events, CurrentDay, CurrentMonth, CurrentYear } = useAppSelector(
+    (state) => state.calenderSlice
+  );
   const hours = Array.from({ length: 24 }, (_, i) => i);
   const [opened, { open, close }] = useDisclosure(false);
   const [e, setE] = useState();
@@ -48,6 +47,7 @@ const TimeDay = (props: Props) => {
             </div>
           ))}
           {events.map((e, i) => {
+            console.log(e);
             if (+e.date.slice(-2) === CurrentDay) {
               const StartedTask = HandleStartedTask(e);
               const TaskTime = HandleTaskTime(e);
