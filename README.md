@@ -16,6 +16,25 @@ Full calendar.
 
 ## Introduction
 
+Welcome to the Full Calendar Application! Managing your schedule, events, and tasks has never been easier. Our Full Calendar Application is designed to provide you with a powerful and user-friendly solution for all your calendar needs.
+
+Are you looking for a bird's-eye view of your month or a granular breakdown of your week? Do you want to effortlessly manage events, appointments, and tasks? Look no further! With our application, you can:
+
+- **Month View:** Get a comprehensive overview of an entire month's events and appointments at a glance.
+
+- **Responsive Design:** Enjoy a seamless experience across a variety of devices and screen sizes, ensuring you're always in control of your schedule.
+
+- **Week View:** Dive into your schedule on a weekly basis for more detailed planning and better organization.
+
+- **Event Management:** Easily add, edit, and delete events with titles, times, and descriptions, making it a breeze to keep track of important dates.
+
+- **Task Management:** Stay organized by associating tasks with specific dates, helping you efficiently manage your to-do list.
+
+- **User-Friendly Interface:** Our application boasts an intuitive and responsive user interface, ensuring that users of all levels can navigate and utilize it with ease.
+
+Take charge of your time and events with the Full Calendar Application. Whether you're an individual looking to manage your personal life or a professional seeking efficient scheduling tools, our application has you covered. Get started today and unlock the full potential of your calendar.
+
+
 ## Features
 
 - **Month View:** Get a comprehensive overview of an entire month's events and appointments.
