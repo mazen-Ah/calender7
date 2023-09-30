@@ -57,7 +57,7 @@ const TimeDay = (props: Props) => {
                 height: `${TaskTime}rem`,
                 top: `${StartedTask}rem`,
               }}
-              className={`absolute bg-[#FDF2F8] w-full text-sm  left-[7rem] opacity-80 flex flex-col p-4 rounded-lg font-semibold`}
+              className={`absolute bg-[#FDF2F8] w-full text-sm left-[7rem] opacity-80 flex flex-col p-4 rounded-lg font-semibold`}
             >
               <span className="text-[#EC4899] font-normal">{e.fromTime}</span>
               <span className="text-[#BE185D]">{e.title}</span>

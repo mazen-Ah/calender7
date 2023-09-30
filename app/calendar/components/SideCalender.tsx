@@ -14,7 +14,7 @@ const SideCalender = (props: Props) => {
     dispatch(EventModal(true));
   };
   return (
-    <div className="grid justify-center items-center bg-slate-50 h-[90vh] max-md-hidden">
+    <div className="max-md:hidden grid justify-center items-center bg-slate-50 h-[90vh] ">
       {/* <Calendar size="md" /> */}
       {/* <button
         onClick={handleAddEventClick} // Use the new click handler

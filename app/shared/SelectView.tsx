@@ -64,13 +64,15 @@ const SelectView = () => {
         </span>
       </button>
       <ul
-        className={`absolute z-20 bg-white border border-gray-300 mt-2 py-2 rounded shadow-lg w-36  ${
+        className={`absolute z-[100] bg-white border border-gray-300 mt-2 py-2 rounded shadow-lg w-36  ${
           isOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
-        } transform origin-top transition-transform ease-in-out duration-300`}
+        } transform origin-top transition-transform ease-in-out duration-300 w-full `}
       >
         {options.map((option) => (
           <Link
-            href={`/calendar/${option.charAt(0) + option.slice(1)}`}
+            href={`/calendar/${
+              option.charAt(0).toLowerCase() + option.slice(1)
+            }`}
             key={option}
             className={`px-4 py-2 cursor-pointer w-full flex ${
               selectedOption === option ? "bg-gray-100" : ""
