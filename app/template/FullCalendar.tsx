@@ -1,4 +1,4 @@
-import CalendarSmall from "../calender/components/CalendarSmall";
+import CalendarSmall from "../calender/components/SideCalender";
 import Header from "../calender/components/CalendarHeader";
 
 type Props = {};

@@ -15,8 +15,6 @@ const Calender = (props: Props) => {
   return (
     <div className="md:p-2 rounded-lg h-screen">
       {ViewEventModal && <EventPopup />}
-      <CalendarHeader />
-      <View />
     </div>
   );
 };

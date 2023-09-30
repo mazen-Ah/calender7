@@ -71,10 +71,9 @@ const MonthViews = () => {
         <div className="bg-white space-y-3 divide-y-[1px] rounded-xl  max-h-60 h-fit overflow-auto border-[1px]">
           {events.map((e, i) => {
             return (
-              <>
+              <div key={i}>
                 <EventEditPopup isOpened={opened} isClose={close} event={e} />
                 <div
-                  key={i}
                   onClick={open}
                   className="flex justify-between items-center w-full bg-white rounded-lg p-4 shadow-md"
                 >
@@ -102,7 +101,7 @@ const MonthViews = () => {
                     Edit
                   </button>
                 </div>
-              </>
+              </div>
             );
           })}
         </div>

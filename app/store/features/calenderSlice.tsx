@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import dayjs, { Dayjs } from "dayjs";
-import { GetMonth } from "@/app/calender/util/GetMonth";
+import { GetMonth } from "@/app/calendar/util/GetMonth";
 
 export interface CounterState {
   month: Dayjs[];
@@ -9,7 +9,8 @@ export interface CounterState {
   ViewEventDetailsModal: boolean;
   CurrentYear: number;
   CurrentMonth: number;
-  CurrentWeek?: any;
+  CurrentDay: number;
+  DAy?: any;
   events: {
     date: string;
     description: string;
@@ -27,6 +28,7 @@ const initialState: CounterState = {
   ViewEventModal: false,
   CurrentYear: dayjs().year(),
   CurrentMonth: dayjs().month(),
+  CurrentDay: dayjs().date(),
   events: [
     {
       date: "2023-09-23",

@@ -46,7 +46,7 @@ const DayOfTheMonth = ({ date, events }: Props) => {
         </span>
         <ul className="text-black overflow-auto max-md:hidden space-y-[1px] grid items-center h-2/3">
           {events?.map((e: any) => (
-            <>
+            <div key={e.id}>
               <EventEditPopup isOpened={opened} isClose={close} event={e} />
               <li
                 key={e.id}
@@ -67,14 +67,14 @@ const DayOfTheMonth = ({ date, events }: Props) => {
                   {formatTime(e.fromTime)}
                 </span>
               </li>
-            </>
+            </div>
           ))}
         </ul>
         <ul className="my-1 md:hidden flex h-full">
           {events?.map((e: any) => (
             <li
-              className="bg-slate-400 w-2 h-2 rounded-full mx-1"
               key={e.id}
+              className="bg-slate-400 w-2 h-2 rounded-full mx-1"
             ></li>
           ))}
         </ul>

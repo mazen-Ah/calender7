@@ -1,15 +1,15 @@
+"use client";
 import React, { useState } from "react";
 import dayjs from "dayjs";
 import SelectView from "@/app/shared/SelectView";
 import SelectDay from "@/app/shared/SelectDay";
 import { useAppSelector, useAppDispatch } from "@/app/hooks/hooks";
 import { ChangeView, EventModal } from "@/app/store/features/calenderSlice";
+import Link from "next/link";
 
 type ViewType = "day" | "month" | "week";
 
-type Props = {};
-
-const Header = (props: Props) => {
+const Header = () => {
   const { CurrentMonth, CurrentYear } = useAppSelector(
     (state) => state.calenderSlice
   );
@@ -33,12 +33,12 @@ const Header = (props: Props) => {
   const handleOptionClick = (option: ViewType) => {
     dispatch(ChangeView(option));
     setSelectedOption(option);
-    closeDropdown(); // Close the dropdown when an option is clicked
+    closeDropdown();
   };
 
   const handleAddEventClick = () => {
     dispatch(EventModal(true));
-    closeDropdown(); // Close the dropdown when "add event" is clicked
+    closeDropdown();
   };
 
   return (
@@ -82,13 +82,14 @@ const Header = (props: Props) => {
               add event
             </div>
             {options.map((option) => (
-              <li
+              <Link
+                href={option.charAt(0).toUpperCase() + option.slice(1)}
                 key={option}
                 className={`px-4 py-2 cursor-pointer text-sm mt-1`}
                 onClick={() => handleOptionClick(option)}
               >
                 {option.charAt(0).toUpperCase() + option.slice(1)} view
-              </li>
+              </Link>
             ))}
           </div>
         </div>

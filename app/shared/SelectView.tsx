@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useAppSelector, useAppDispatch } from "@/app/hooks/hooks";
 import { ChangeView } from "@/app/store/features/calenderSlice";
+import Link from "next/link";
 type ViewType = "day" | "month" | "week";
 
 const SelectView = () => {
@@ -68,15 +69,16 @@ const SelectView = () => {
         } transform origin-top transition-transform ease-in-out duration-300`}
       >
         {options.map((option) => (
-          <li
+          <Link
+            href={`/calendar/${option.charAt(0) + option.slice(1)}`}
             key={option}
-            className={`px-4 py-2 cursor-pointer ${
+            className={`px-4 py-2 cursor-pointer w-full flex ${
               selectedOption === option ? "bg-gray-100" : ""
             }`}
             onClick={() => handleOptionClick(option)}
           >
             {option.charAt(0).toUpperCase() + option.slice(1)} view
-          </li>
+          </Link>
         ))}
       </ul>
     </div>

@@ -1,3 +1,6 @@
+"use client";
+import Header from "./components/CalendarHeader";
+
 export default function CalenderLayout({
   children,
 }: {
@@ -5,6 +8,7 @@ export default function CalenderLayout({
 }) {
   return (
     <>
+      <Header />
       <main className="">{children}</main>
     </>
   );

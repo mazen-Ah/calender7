@@ -6,3 +6,11 @@
   --mantine-color-scheme: light; /* Reset the color scheme to Mantine's default */
   /* Add more custom property overrides if needed */
 }
+.mantine-Calendar-monthTbody {
+  border: 1px solid gray;
+  border-radius: 50% !important;
+}
+.mantine-Calendar-monthCell {
+  border: 1px solid gray;
+  border-radius: 50% !important;
+}
