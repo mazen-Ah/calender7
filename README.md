@@ -30,7 +30,6 @@ Full calendar.
 
 - **User-Friendly Interface:** The application offers an intuitive and responsive user interface.
 
-- **Customization:** Customize event colors and categories for better organization.
 
 ## Getting Started
 
