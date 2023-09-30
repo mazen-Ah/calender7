@@ -1,4 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Full Calendar Application README
+
+# Project Name
+
+Full calendar.
+
+## Table of Contents
+
+- [Project Name](#project-name)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Features](#features)
+  - [Getting Started](#getting-started)
+  - [Learn More](#learn-more)
+  - [Deploy on Vercel](#deploy-on-vercel)
+
+## Introduction
+
+## Features
+
+- **Month View:** Get a comprehensive overview of an entire month's events and appointments.
+
+- **responsive:** Get a comprehensive overview of an entire month's events and appointments.
+
+- **Week View:** View your schedule on a weekly basis for more detailed planning.
+
+- **Event Management:** Easily add, edit, and delete events with titles, times, and descriptions.
+
+- **Task Management:** Keep track of tasks associated with specific dates and manage them efficiently.
+
+- **User-Friendly Interface:** The application offers an intuitive and responsive user interface.
+
+- **Customization:** Customize event colors and categories for better organization.
 
 ## Getting Started
 

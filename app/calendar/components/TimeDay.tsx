@@ -1,26 +1,22 @@
-"use client";
-import React from "react";
+import React, { useState } from "react";
 import { useAppSelector } from "@/app/hooks/hooks";
 import dayjs from "dayjs";
-import { title } from "process";
+// You should remove this import as it's not used
+// import { title } from "process";
+import { current } from "@reduxjs/toolkit";
+import { useDisclosure } from "@mantine/hooks";
+import EventEditPopup from "./EventEditPopup";
+
 type Props = {};
 
 const TimeDay = (props: Props) => {
-  const { events } = useAppSelector((state) => state.calenderSlice);
+  const { events, CurrentDay } = useAppSelector((state) => state.calenderSlice);
   const hours = Array.from({ length: 24 }, (_, i) => i);
-
-  const task = {
-    date: "2023-09-23",
-    description: "Technical-Interview",
-    id: "3a17ed97-73f8-4f97-841d-6f3f8b5f2db6",
-    fromTime: "14:00",
-    title: "Technical-Interview",
-    toTime: "16:00",
-  };
-
+  const [opened, { open, close }] = useDisclosure(false);
+  const [e, setE] = useState();
   const HandleTaskTime = (task: any): any => {
-    const from = dayjs(task.date + task.fromTime);
-    const to = dayjs(task.date + task.toTime);
+    const from = dayjs(task.date + "T" + task.fromTime); // Added "T" for proper ISO format
+    const to = dayjs(task.date + "T" + task.toTime); // Added "T" for proper ISO format
     const result = to.diff(from, "minute") / 60;
     return result * 6;
   };
@@ -31,44 +27,55 @@ const TimeDay = (props: Props) => {
     const result = (+z + q / 60) * 6;
     return result;
   };
-
-  const StartedTask = HandleStartedTask(task);
-  const TaskTime = HandleTaskTime(task);
+  const ShowPopup = (e: any) => {
+    setE(e);
+    open();
+  };
   return (
-    <div className="w-full h-[90vh] border-x-[1px] overflow-y-auto overflow-x-hidden">
-      <ul className="relative">
-        {hours.map((e, i) => (
-          <div className="relative">
-            <div className="absolute left-[4rem] text-gray-400 w-14">
-              {i + 1 <= 12 ? ` ${i + 1} AM ` : `${i - 11} PM`}
+    <>
+      {opened && <EventEditPopup isOpened={opened} isClose={close} event={e} />}
+      <div className="w-full h-[90vh] border-x-[1px] overflow-y-auto overflow-x-hidden">
+        <ul className="relative">
+          {hours.map((e, i) => (
+            <div key={i} className="relative">
+              <div className="absolute left-[4rem] text-gray-400 w-14">
+                {i + 1 <= 12 ? ` ${i + 1} AM ` : `${i - 11} PM`}
+              </div>
+              <li
+                key={i}
+                className="h-[6rem] border-b-[1px] border-l-[1px] p-2 ml-28"
+              ></li>
             </div>
-            <li
-              key={i}
-              className="h-[6rem] border-b-[1px] border-l-[1px] p-2 ml-28"
-            ></li>
-          </div>
-        ))}
-        {events.map((e) => {
-          const StartedTask = HandleStartedTask(e);
-          const TaskTime = HandleTaskTime(e);
-          return (
-            <div
-              style={{
-                height: `${TaskTime}rem`,
-                top: `${StartedTask}rem`,
-              }}
-              className={`absolute bg-[#FDF2F8] w-full text-sm left-[7rem] opacity-80 flex flex-col p-4 rounded-lg font-semibold`}
-            >
-              <span className="text-[#EC4899] font-normal">{e.fromTime}</span>
-              <span className="text-[#BE185D]">{e.title}</span>
-              <span className="text-[#EC4899] font-normal">
-                {e.description}
-              </span>
-            </div>
-          );
-        })}
-      </ul>
-    </div>
+          ))}
+          {events.map((e, i) => {
+            if (+e.date.slice(-2) === CurrentDay) {
+              const StartedTask = HandleStartedTask(e);
+              const TaskTime = HandleTaskTime(e);
+              console.log(+e.date.slice(-2), CurrentDay);
+              return (
+                <div
+                  key={i}
+                  style={{
+                    height: `${TaskTime}rem`,
+                    top: `${StartedTask}rem`,
+                  }}
+                  onClick={() => ShowPopup(e)}
+                  className={`absolute cursor-pointer hover:bg-red-100 bg-[#FDF2F8] w-full text-sm left-[7rem] opacity-80 flex flex-col p-4 rounded-lg font-semibold`}
+                >
+                  <span className="text-[#EC4899] font-normal">
+                    {e.fromTime}
+                  </span>
+                  <span className="text-[#BE185D]">{e.title}</span>
+                  <span className="text-[#EC4899] font-normal">
+                    {e.description}
+                  </span>
+                </div>
+              );
+            }
+          })}
+        </ul>
+      </div>
+    </>
   );
 };
 

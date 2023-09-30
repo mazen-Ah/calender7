@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import SelectView from "@/app/shared/SelectView";
 import SelectDay from "@/app/shared/SelectDay";
@@ -7,16 +7,18 @@ import { useAppSelector, useAppDispatch } from "@/app/hooks/hooks";
 import { ChangeView, EventModal } from "@/app/store/features/calenderSlice";
 import Link from "next/link";
 import EventPopup from "./EventPopup";
+import { usePathname } from "next/navigation";
 
 type ViewType = "day" | "month" | "week";
 
 const Header = () => {
-  const { CurrentMonth, CurrentYear, ViewEventModal } = useAppSelector(
-    (state) => state.calenderSlice
-  );
-
+  const { CurrentMonth, CurrentYear, ViewEventModal, CurrentDay } =
+    useAppSelector((state) => state.calenderSlice);
+  const pathname = usePathname();
+  console.log(pathname);
   const dispatch = useAppDispatch();
-  const [isOpen, setIsOpen] = useState(false);
+  const [formattedDate, setFormattedDate] = useState("");
+
   const [selectedOption, setSelectedOption] = useState<ViewType>("month");
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
@@ -29,7 +31,7 @@ const Header = () => {
   };
 
   const currentMonthIndex = dayjs().month();
-  const currentDayIndex = dayjs().date();
+
   const options: ViewType[] = ["day", "week", "month"];
 
   const handleOptionClick = (option: ViewType) => {
@@ -42,17 +44,33 @@ const Header = () => {
     dispatch(EventModal(true));
     closeDropdown();
   };
-
+  useEffect(() => {
+    if (
+      CurrentYear !== undefined &&
+      CurrentMonth !== undefined &&
+      CurrentDay !== undefined
+    ) {
+      if (pathname === "/calendar/day") {
+        setFormattedDate(
+          dayjs(new Date(CurrentYear, CurrentMonth, CurrentDay)).format(
+            "MMMM DD, YYYY"
+          )
+        );
+      } else {
+        setFormattedDate(
+          dayjs(new Date(CurrentYear, CurrentMonth, CurrentDay)).format(
+            "MMMM YYYY"
+          )
+        );
+      }
+    }
+  }, [pathname, CurrentYear, CurrentMonth, CurrentDay]);
   return (
     <>
       {ViewEventModal && <EventPopup />}
       <header className="py-4 px-6 bg-[#F9FAFB] flex justify-between items-center border-[#E7E7E9] border-[1px] rounded-t-lg">
         <h2 className="font-semibold grid">
-          <span>
-            {dayjs(new Date(CurrentYear, CurrentMonth, currentDayIndex)).format(
-              "MMMM YYYY"
-            )}
-          </span>
+          <span>{formattedDate}</span>
         </h2>
         <div className="flex gap-4">
           <div className="border-r-2 px-4 flex gap-5 ">

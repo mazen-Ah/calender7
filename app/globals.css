@@ -10,7 +10,13 @@
   border: 1px solid gray;
   border-radius: 50% !important;
 }
-.mantine-Calendar-monthCell {
+.mantine-DatePicker-monthCell {
   border: 1px solid gray;
+  padding: 0 0.3rem;
   border-radius: 50% !important;
+}
+.mantine-DatePicker-calendarHeader {
+  display: flex !important;
+  justify-content: space-between;
+  margin: auto;
 }

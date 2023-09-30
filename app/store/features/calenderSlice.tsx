@@ -59,7 +59,6 @@ export const calenderSlice = createSlice({
       state.events.push(action.payload);
     },
     delEv: (state, action: PayloadAction<string>) => {
-      // Filter out the event with the specified ID
       state.events = state.events.filter(
         (event) => event.id !== action.payload
       );
@@ -67,21 +66,26 @@ export const calenderSlice = createSlice({
     updateEvent: (state, action) => {
       const { id, updatedEvent } = action.payload;
 
-      // Use map to create a new array with the updated event
       state.events = state.events.map((event) => {
         if (event.id === id) {
-          // If the event ID matches the one to update
           return {
-            ...event, // Copy all existing properties
-            ...action.payload, // Update with new properties
+            ...event,
+            ...action.payload,
           };
         }
-        return event; // Return unchanged events
+        return event;
       });
     },
-
+    PrevDay: (state) => {
+      state.CurrentDay -= 1;
+    },
+    setDay: (state, action) => {
+      state.CurrentDay = action.payload;
+    },
+    NextDay: (state) => {
+      state.CurrentDay += 1;
+    },
     PrevMonth: (state) => {
-      // Decrement the current month
       if (state.CurrentMonth === 0) {
         state.CurrentYear -= 1;
         state.CurrentMonth = 11; // December (0-based index)
@@ -115,6 +119,9 @@ export const {
   addEv,
   delEv,
   updateEvent,
+  PrevDay,
+  NextDay,
+  setDay,
 } = calenderSlice.actions;
 
 export default calenderSlice.reducer;
