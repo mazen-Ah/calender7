@@ -10,7 +10,7 @@ export default function Home() {
     <main className="lg:px-16 lg:py-4 flex items-center justify-center text-center">
       <Link
         className="p-10 bg-[#4F45E4] text-white font-semibold rounded-lg"
-        href={"/calendar"}
+        href={"/calendar/month"}
       >
         Calendar
       </Link>
