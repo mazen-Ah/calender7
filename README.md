@@ -1,6 +1,6 @@
 Full Calendar Application README
 
-# CALENDAR
+# calendar
 
 Full calendar.
 
