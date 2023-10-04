@@ -1,6 +1,6 @@
 Full Calendar Application README
 
-# Project Name
+# CALENDAR
 
 Full calendar.
 
