@@ -1,4 +1,3 @@
-Full Calendar Application README
 
 # calendar
 
